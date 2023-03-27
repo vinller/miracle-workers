@@ -1,9 +1,10 @@
-brick.SetColorMode(4, 2); %color sensor activates
+
 
 while 1
-  brick.MoveMotor('A', 60); %Moves the motors
-  brick.MoveMotor('B', 60);
+  brick.MoveMotor('A', 20); %Moves the motors
+  brick.MoveMotor('B', 20);
 
+  brick.SetColorMode(4, 2); %color sensor activates
   color = brick.ColorCode(4);		%color will gather the color
   touch = brick.TouchPressed(2); %touch sensor 1 or 0
   distance = brick.UltrasonicDist(3); %ultrasonic
@@ -13,8 +14,8 @@ while 1
 		brick.StopMotor('A');
 		brick.StopMotor('B');
 		pause(3);
-		brick.MoveMotor('A', 60);
-		brick.MoveMotor('B', 60);
+		brick.MoveMotor('A', 20);
+		brick.MoveMotor('B', 20);
 		pause(0.5);
   elseif color == 2 || color == 3 || color == 4 %switches to manual code when BGY
 	  disp('blue/green/yellow');
@@ -46,10 +47,10 @@ while 1
           brick.StopAllMotors;
 				case 'w'    % Press w to lift.
 					disp('Lift Commencing');
-					brick.MoveMotor('D', 1);
+					brick.MoveMotor('D', -1);
 				case 's'    % Press s to delift.
 					disp('Lift Delifting');
-					brick.MoveMotor('D', -1);
+					brick.MoveMotor('D', 1);
 				case 'a'    % Press a to stop the lift.
 					disp('Stop the lift');
 					brick.StopMotor('D');
