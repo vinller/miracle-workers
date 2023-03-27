@@ -1,9 +1,10 @@
+brick.SetColorMode(4, 2); %color sensor activates
+
 while 1
   brick.MoveMotor('A', 60); %Moves the motors
   brick.MoveMotor('B', 60);
 
-  brick.SetColorMode(1, 2);		%Color sensor activates
-  color = brick.ColorCode(1);		%color will gather the color
+  color = brick.ColorCode(4);		%color will gather the color
   touch = brick.TouchPressed(2); %touch sensor 1 or 0
   distance = brick.UltrasonicDist(3); %ultrasonic
 
