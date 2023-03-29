@@ -75,7 +75,7 @@ while 1
 	brick.MoveMotor('B', 20);
   end
 
-  if touch == 1
+  if touch
   	brick.StopAllMotors; %stop
   	brick.MoveMotor('A', -2) %back up from wall
 	brick.MoveMotor('B', -2)
