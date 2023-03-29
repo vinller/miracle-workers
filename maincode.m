@@ -20,32 +20,32 @@ while 1
 		color = 0;
   elseif color == 2 || color == 3 || color == 4 %switches to manual code when BGY
 	  disp('blue/green/yellow');
-    global key
-    InitKeyboard();
-    while 1
+    	  global key
+    	  InitKeyboard();
+    	  while 1
 			pause(0.1);
 			switch key
 				case 'uparrow'
 					disp('Up Arrow Pressed!');
-          brick.MoveMotor('A', 60);
-          brick.MoveMotor('B', 60);
+          				brick.MoveMotor('A', 60);
+          				brick.MoveMotor('B', 60);
         
 				case 'downarrow'
 					disp('Down Arrow Pressed!');
-          brick.MoveMotor('A', -60);
-          brick.MoveMotor('B', -60);
+          				brick.MoveMotor('A', -60);
+          				brick.MoveMotor('B', -60);
 				case 'leftarrow'
 					disp('Left Arrow Pressed!');
-          brick.MoveMotor('A',-60); 
+          				brick.MoveMotor('A',-60); 
           				brick.MoveMotor('B',60);
 				case 'rightarrow'
 					disp('Right Arrow Pressed!');
-          brick.MoveMotor('B',-60);   
-          brick.MoveMotor('A', 60);
+          				brick.MoveMotor('B',-60);   
+          				brick.MoveMotor('A', 60);
 		
 				case 0		% No key is being pressed.
 					disp('No Key Pressed!');
-          brick.StopAllMotors;
+          				brick.StopAllMotors;
 				case 'w'    % Press w to lift.
 					disp('Lift Commencing');
 					brick.MoveMotor('D', -1);
@@ -60,32 +60,33 @@ while 1
 					brick.StopAllMotors;
 					break;
 
-      end	%ends switch key
-    end	%ends while loop
-    CloseKeyboard();
-    color = 0;
+      			end	%ends switch key
+    	  end	%ends while loop
+    	  CloseKeyboard();
+    	  color = 0;
   end	%ends color sensor
 
   if distance > 20 %follow the right wall
-    %stop
-    %turn right
-    %stop
-    %keep moving forward
-    
+  	brick.StopAllMotors; %stop
+  	brick.MoveMotor('B', -20) %turn right
+	pause(2.5);
+  	brick.StopAllMotors; %stop
+  	brick.MoveMotor('A', 20); %keep moving forward
+	brick.MoveMotor('B', 20);
   end
 
   if touch == 1
-    %stop
-    %back up from wall
-    %get distance from right wall
-    %if distance < 10, turn left
+  	brick.StopAllMotors; %stop
+  	brick.MoveMotor('A', -2) %back up from wall
+	brick.MoveMotor('B', -2)
+	pause(2.5);
+	brick.StopAllMotors;
+  	distance = brick.UltrasonicDist(3); %get distance from right wall
+  	if distance < 10
+		brick.MoveMotor('A', -20); %turn left
+		pause(1.5);
+	end
 	
   end
-
-
-
-
-
-
 
 end %ends the entire program
