@@ -66,7 +66,7 @@ while 1
     color = 0;
   end	%ends color sensor
 
-  if distance > 50 %follow the right wall
+  if distance > 20 %follow the right wall
     %stop
     %turn right
     %stop
@@ -78,7 +78,7 @@ while 1
     %stop
     %back up from wall
     %get distance from right wall
-    %if distance < 50, turn left
+    %if distance < 10, turn left
 	
   end
 
