@@ -84,7 +84,7 @@ while 1
   	distance = brick.UltrasonicDist(3); %get distance from right wall
   	if distance < 10
 		brick.MoveMotor('A', -20); %turn left
-		pause(1.5);
+		pause(2.5);
 	end
 	
   end
