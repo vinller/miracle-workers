@@ -66,9 +66,10 @@ while 1
     	  color = 0;
   end	%ends color sensor
 
-  if distance > 20 %follow the right wall
+  if distance > 50 %follow the right wall
   	brick.StopAllMotors; %stop
-  	brick.MoveMotor('B', -20) %turn right
+  	%brick.MoveMotor('B', -20) %turn right
+	brick.MoveMotorAngleRel('B', -20, 90, 'Break');
 	pause(2.5);
   	brick.StopAllMotors; %stop
   	brick.MoveMotor('A', 20); %keep moving forward
@@ -83,7 +84,8 @@ while 1
 	brick.StopAllMotors;
   	distance = brick.UltrasonicDist(3); %get distance from right wall
   	if distance < 10
-		brick.MoveMotor('A', -20); %turn left
+		%brick.MoveMotor('A', -20); %turn left
+		brick.MoveMotorAngleRel('A', -20, 90, 'Break');
 		pause(2.5);
 	end
 	
