@@ -17,6 +17,7 @@ while 1
 		brick.MoveMotor('A', 20);
 		brick.MoveMotor('B', 20);
 		pause(0.5);
+		color = 0;
   elseif color == 2 || color == 3 || color == 4 %switches to manual code when BGY
 	  disp('blue/green/yellow');
     global key
@@ -62,24 +63,23 @@ while 1
       end	%ends switch key
     end	%ends while loop
     CloseKeyboard();
+    color = 0;
   end	%ends color sensor
 
-  if distance > 50
-    **turn right**
-    pause(1);
-    brick.StopAllMotors;
-    brick.MoveMotor('A', 
+  if distance > 50 %follow the right wall
+    %stop
+    %turn right
+    %stop
+    %keep moving forward
     
   end
 
   if touch == 1
-	  pause(1);
-	  disp('touched wall');
-	  brick.StopAllMotors;
-	  **get distance w/ ultrasonic sensor**
-	  brick.MoveMotor('A', -5);
-    brick.MoveMotor('B', -5);
-	  brick.StopAllMotors;
+    %stop
+    %back up from wall
+    %get distance from right wall
+    %if distance < 50, turn left
+	
   end
 
 
