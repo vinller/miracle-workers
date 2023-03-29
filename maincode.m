@@ -7,36 +7,7 @@ while 1
   touch = brick.TouchPressed(2); %touch sensor 1 or 0
   distance = brick.UltrasonicDist(3); %ultrasonic
 
-  if color == 1
-  	brick.MoveMotor('A', 20);
-  	brick.MoveMotor('B', 20);
-	if distance > 10 %follow the right wall
-  		brick.StopAllMotors; %stop
-  		%brick.MoveMotor('B', -20) %turn right
-		brick.MoveMotorAngleRel('B', -20, 90, 'Break');
-		%pause(2.5);
-  		brick.StopAllMotors; %stop
-  		brick.MoveMotor('A', 20); %keep moving forward
-		brick.MoveMotor('B', 20);
-  	end
-
-  	if touch
-  		brick.StopAllMotors; %stop
-  		brick.MoveMotor('A', -2) %back up from wall
-		brick.MoveMotor('B', -2)
-		%pause(2.5);
-		brick.StopAllMotors;
-  		distance = brick.UltrasonicDist(3); %get distance from right wall
-  		if distance < 10
-			%brick.MoveMotor('A', -20); %turn left
-			brick.MoveMotorAngleRel('A', -20, 90, 'Break');
-			pause(2.5);
-		end
-	
-  	end
-  end
-
-  elseif color == 5	%if color is Red
+  if color == 5	%if color is Red
 	  disp('red');
 		brick.StopMotor('A');
 		brick.StopMotor('B');
@@ -91,6 +62,34 @@ while 1
     	  end	%ends while loop
     	  CloseKeyboard();
     	  color = 0;
-  end	%ends color sensor
+  
+  else
+  	brick.MoveMotor('A', 20);
+  	brick.MoveMotor('B', 20);
+	if distance > 10 %follow the right wall
+  		brick.StopAllMotors; %stop
+  		%brick.MoveMotor('B', -20) %turn right
+		brick.MoveMotorAngleRel('B', -20, 90, 'Break');
+		%pause(2.5);
+  		brick.StopAllMotors; %stop
+  		brick.MoveMotor('A', 20); %keep moving forward
+		brick.MoveMotor('B', 20);
+  	end
+
+  	if touch
+  		brick.StopAllMotors; %stop
+  		brick.MoveMotor('A', -2) %back up from wall
+		brick.MoveMotor('B', -2)
+		%pause(2.5);
+		brick.StopAllMotors;
+  		distance = brick.UltrasonicDist(3); %get distance from right wall
+  		if distance < 10
+			%brick.MoveMotor('A', -20); %turn left
+			brick.MoveMotorAngleRel('A', -20, 90, 'Break');
+			pause(2.5);
+		end
+	
+  	end
+  end
 
 end %ends the entire program
