@@ -46,10 +46,10 @@ while 1
           				brick.StopAllMotors;
 				case 'w'    % Press w to lift.
 					disp('Lift Commencing');
-					brick.MoveMotor('D', -1);
+					brick.MoveMotor('D', -5);
 				case 's'    % Press s to delift.
 					disp('Lift Delifting');
-					brick.MoveMotor('D', 1);
+					brick.MoveMotor('D', 5);
 				case 'a'    % Press a to stop the lift.
 					disp('Stop the lift');
 					brick.StopMotor('D');
