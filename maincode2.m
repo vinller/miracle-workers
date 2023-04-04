@@ -20,7 +20,7 @@ while 1 %infinite loop
             if distSense < 40 && touchSense == 0
                 brick.MoveMotor(LMOTOR, SPEED);
                 brick.MoveMotor(RMOTOR, SPEED);
-            elseif buttonSense == 1
+            elseif distSense < 40 && touchSense == 1
                 brick.MoveMotor(LMOTOR, -SPEED);
                 brick.MoveMotor(RMOTOR, -SPEED);
                 pause(3.0);
@@ -33,7 +33,12 @@ while 1 %infinite loop
                 brick.ResetMotorAngle(LMOTOR); 
                 brick.ResetMotorAngle(RMOTOR); 
                 brick.MoveMotorAngleRel(LMOTOR, SPEED, TURNING_RADIUS, 'Coast');
-            elseif distSense 
+            elseif distSense > 40 && touchSense == 1
+                brick.MoveMotor(RMOTOR,-SPEED)
+                brick.MoveMotor(LMOTOR,-SPEED)
+                pause(1.2)                            
+                brick.StopAllMotors
+                brick.MoveMotorAngleRel(RMOTOR, SPEED, TURNING_RADIUS, 'Coast');   
             
             end
         
