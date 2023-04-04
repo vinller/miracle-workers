@@ -49,7 +49,7 @@ while 1 %infinite loop
                 brick.MoveMotor(RMOTOR, SPEED)
                 brick.MoveMotor(LMOTOR, SPEED)
                 pause(3)
-                brick.StopAllMotors
+                brick.StopAllMotors()
                 %(RIGHT)
             end
 

@@ -72,11 +72,11 @@ while 1
         brick.MoveMotor('B', 20);
 
         if distance > 10 %follow the right wall
-            brick.StopAllMotors; %stop
+            brick.StopAllMotors(); %stop
             %brick.MoveMotor('B', -20) %turn right
             brick.MoveMotorAngleRel('B', -20, 90, 'Break');
             %pause(2.5);
-            brick.StopAllMotors; %stop
+            brick.StopAllMotors(); %stop
             brick.MoveMotor('A', 20); %keep moving forward
             brick.MoveMotor('B', 20);
         end
