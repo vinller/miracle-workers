@@ -16,7 +16,7 @@ while 1 %infinite loop
     distSense = brick.UltrasonicDist(distSensePort); %turn on ultrasonic sensor
     touchSense = brick.TouchPressed(buttonSensePort); %turn on touch sensor
     switch colorSense
-        case 1
+        case 1 && 6
             if distSense < 40 && touchSense == 0
                 brick.MoveMotor(LMOTOR, SPEED);
                 brick.MoveMotor(RMOTOR, SPEED);
