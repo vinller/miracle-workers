@@ -2,14 +2,14 @@ clearvars
 brick = ConnectBrick("gripy");
 global key
 InitKeyboard();
-SPEED = -40;
+SPEED = -30;
 LMOTOR = 'A';
 RMOTOR = 'B';
 DMOTOR = 'D';
 colorSensePort= 4;
 distSensePort = 3;
 touchSensePort = 2;
-turningRadius = 430;
+turningRadius = 90;
 
 while 1 %infinite loop
     colorSense = brick.ColorCode(colorSensePort); %turn on color sensor
@@ -25,26 +25,25 @@ while 1 %infinite loop
             if distSense < 40 && touchSense == 1
                 brick.MoveMotor(LMOTOR, -SPEED);
                 brick.MoveMotor(RMOTOR, -SPEED);
-                pause(3.0);
-                brick.MoveMotorAngleRel(LMOTOR, SPEED, 2*turningRadius, 'Coast');
                 pause(1.0);
-                brick.MoveMotor(LMOTOR, SPEED);
-                brick.MoveMotor(RMOTOR, SPEED);
+                brick.MoveMotorAngleRel(RMOTOR, SPEED, turningRadius, 'Coast');
+                pause(1.0);                
             end
             if distSense > 40 && touchSense == 0
-                pause(1.0);
-                brick.ResetMotorAngle(LMOTOR); 
-                brick.ResetMotorAngle(RMOTOR); 
-                brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius, 'Coast');
+               % brick.MoveMotor(LMOTOR, SPEED);
+               % brick.MoveMotor(RMOTOR, SPEED);
+               brick.ResetMotorAngle(LMOTOR); 
+               brick.ResetMotorAngle(RMOTOR); 
+               brick.MoveMotorAngleRel(RMOTOR, SPEED, turningRadius, 'Coast');
             end
             if distSense > 40 && touchSense == 1
-                brick.MoveMotor(RMOTOR,-SPEED);
-                brick.MoveMotor(LMOTOR,-SPEED);
-                pause(1.2);                            
-                brick.StopAllMotors;
-                brick.MoveMotorAngleRel(RMOTOR, SPEED, turningRadius, 'Coast');   
+               brick.MoveMotor(RMOTOR,-SPEED);
+               brick.MoveMotor(LMOTOR,-SPEED);
+               pause(1.0);                            
+               brick.StopAllMotors;
+               brick.MoveMotorAngleRel(RMOTOR, SPEED, turningRadius, 'Coast');   
             
-            end
+           end
         
         case 5
             disp('Red. Stop for 3 seconds');
