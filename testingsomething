@@ -32,13 +32,18 @@ while 1 %infinite loop
                 brick.MoveMotor(RMOTOR, SPEED);
                 brick.MoveMotor(LMOTOR, SPEED2);
                 pause(2.0)  %moves forward into new position, hopefully stops vehicle from going back the way it came
-                brick.StopAllMotors();
+                brick.StopAllMotors;
             elseif (distSense > 40 && touchSense == 0)  %no wall on left, no obstacle ahead
                 brick.StopAllMotors;
                 brick.ResetMotorAngle(LMOTOR);
                 brick.ResetMotorAngle(RMOTOR);
-                
-                
+                brick.MoveMotorAngleRel(LMOTOR, SPEED, TURNING_RADIUS, 'Coast');    %turn left
+                brick.WaitForMotor(LMOTOR);
+                brick.MoveMotor(RMOTOR, SPEED);
+                brick.MoveMotor(LMOTOR, SPEED2);
+                pause(2.0);
+                brick.StopAllMotors;
+             end   
             
             
             (if distSense < 40 && touchSense == 0
