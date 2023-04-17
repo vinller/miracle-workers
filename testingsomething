@@ -44,36 +44,6 @@ while 1 %infinite loop
                 pause(2.0);
                 brick.StopAllMotors;
              end   
-            
-            
-            (if distSense < 40 && touchSense == 0
-                brick.MoveMotor(LMOTOR, SPEED2);
-                brick.MoveMotor(RMOTOR, SPEED);
-            elseif distSense < 40 && touchSense == 1
-               brick.MoveMotor(RMOTOR,-SPEED);
-               brick.MoveMotor(LMOTOR,-SPEED2);
-               pause(2.0);                            
-               brick.StopAllMotors;
-               brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius*2, 'Coast');
-               brick.WaitForMotor(LMOTOR);
-               brick.StopAllMotors();
-               brick.MoveMotor(LMOTOR, SPEED2);
-               brick.MoveMotor(RMOTOR, SPEED);
-            elseif distSense > 40 && touchSense == 1
-                brick.MoveMotor(LMOTOR, -SPEED2);
-                brick.MoveMotor(RMOTOR, -SPEED);
-                pause(2.0);
-                brick.StopAllMotors();
-                brick.MoveMotorAngleRel(RMOTOR, SPEED, turningRadius, 'Coast');
-                brick.WaitForMotor(RMOTOR);
-                pause(1.0);
-                brick.StopAllMotors();
-                brick.MoveMotor(LMOTOR, SPEED2);
-                brick.MoveMotor(RMOTOR, SPEED);
-            else % no obstacle present and touch sensor not pressed
-               brick.MoveMotor(LMOTOR, SPEED);
-               brick.MoveMotor(RMOTOR, SPEED);
-            end)
         
         case 5
             disp('Red. Stop for 3 seconds');
