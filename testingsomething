@@ -37,8 +37,8 @@ while 1 %infinite loop
                 brick.StopAllMotors;
                 brick.ResetMotorAngle(LMOTOR);
                 brick.ResetMotorAngle(RMOTOR);
-                brick.MoveMotorAngleRel(LMOTOR, SPEED, TURNING_RADIUS, 'Coast');    %turn left
-                brick.WaitForMotor(LMOTOR);
+                brick.MoveMotorAngleRel(RMOTOR, SPEED, TURNING_RADIUS, 'Coast');    %turn left
+                brick.WaitForMotor(RMOTOR);
                 brick.MoveMotor(RMOTOR, SPEED);
                 brick.MoveMotor(LMOTOR, SPEED2);
                 pause(2.0);
