@@ -19,11 +19,32 @@ while 1 %infinite loop
     switch colorSense
         case 1
             disp('black');
-            if distSense < 40 && touchSense == 0
+            if (distSense < 40 && touchSense == 0)  %wall on left, nothing in front 
                 brick.MoveMotor(LMOTOR, SPEED2);
                 brick.MoveMotor(RMOTOR, SPEED);
-            end
-            if (distSense < 40 && distSense > 37) && touchSense == 1
+            elseif (distSense < 40 && touchSense == 1)  %wall on left, obstacle ahead, turn right
+                brick.MoveMotor(RMOTOR,-SPEED);
+                brick.MoveMotor(LMOTOR,-SPEED2);
+                pause(2.0);
+                brick.StopAllMotors;
+                brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius*2, 'Coast');   %turn right
+                brick.WaitForMotor(LMOTOR);
+                brick.MoveMotor(RMOTOR, SPEED);
+                brick.MoveMotor(LMOTOR, SPEED2);
+                pause(2.0)  %moves forward into new position, hopefully stops vehicle from going back the way it came
+                brick.StopAllMotors();
+            elseif (distSense > 40 && touchSense == 0)  %no wall on left, no obstacle ahead
+                brick.StopAllMotors;
+                brick.ResetMotorAngle(LMOTOR);
+                brick.ResetMotorAngle(RMOTOR);
+                
+                
+            
+            
+            (if distSense < 40 && touchSense == 0
+                brick.MoveMotor(LMOTOR, SPEED2);
+                brick.MoveMotor(RMOTOR, SPEED);
+            elseif distSense < 40 && touchSense == 1
                brick.MoveMotor(RMOTOR,-SPEED);
                brick.MoveMotor(LMOTOR,-SPEED2);
                pause(2.0);                            
@@ -33,21 +54,7 @@ while 1 %infinite loop
                brick.StopAllMotors();
                brick.MoveMotor(LMOTOR, SPEED2);
                brick.MoveMotor(RMOTOR, SPEED);
-            end
-             if distSense > 50 && touchSense == 0
-               % brick.MoveMotor(LMOTOR, SPEED);
-               % brick.MoveMotor(RMOTOR, SPEED);
-               brick.ResetMotorAngle(LMOTOR); 
-               brick.ResetMotorAngle(RMOTOR);
-               pause(1.0);
-               brick.StopAllMotors();
-               brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius, 'Coast');
-               brick.WaitForMotor(LMOTOR);
-               brick.StopAllMotors();
-               brick.MoveMotor(LMOTOR, SPEED2);
-               brick.MoveMotor(RMOTOR, SPEED);
-            end
-            if distSense < 37 && touchSense == 1
+            elseif distSense > 40 && touchSense == 1
                 brick.MoveMotor(LMOTOR, -SPEED2);
                 brick.MoveMotor(RMOTOR, -SPEED);
                 pause(2.0);
@@ -58,7 +65,10 @@ while 1 %infinite loop
                 brick.StopAllMotors();
                 brick.MoveMotor(LMOTOR, SPEED2);
                 brick.MoveMotor(RMOTOR, SPEED);
-            end
+            else % no obstacle present and touch sensor not pressed
+               brick.MoveMotor(LMOTOR, SPEED);
+               brick.MoveMotor(RMOTOR, SPEED);
+            end)
         
         case 5
             disp('Red. Stop for 3 seconds');
