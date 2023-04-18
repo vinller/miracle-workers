@@ -3,7 +3,7 @@ brick = ConnectBrick("gripy");
 global key
 %%InitKeyboard();
 SPEED = -30;
-SPEED2 = -32;
+SPEED2 = -31;
 LMOTOR = 'A';
 RMOTOR = 'B';
 DMOTOR = 'D';
@@ -22,16 +22,17 @@ while 1 %infinite loop
             if (distSense < 40 && touchSense == 0)  %wall on left, nothing in front 
                 brick.MoveMotor(LMOTOR, SPEED2);
                 brick.MoveMotor(RMOTOR, SPEED);
+                pause(2.0);
             elseif (distSense < 40 && touchSense == 1)  %wall on left, obstacle ahead, turn right
                 brick.MoveMotor(RMOTOR,-SPEED);
                 brick.MoveMotor(LMOTOR,-SPEED2);
-                pause(2.0);
+                pause(1.5);
                 brick.StopAllMotors;
-                brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius+12, 'Coast');   %turn right
+                brick.MoveMotorAngleRel(LMOTOR, SPEED, turningRadius+10, 'Coast');   %turn right
                 brick.WaitForMotor(LMOTOR);
                 brick.MoveMotor(RMOTOR, SPEED);
                 brick.MoveMotor(LMOTOR, SPEED2);
-                pause(4.0)  %moves forward into new position, hopefully stops vehicle from going back the way it came
+                pause(4.5)  %moves forward into new position, hopefully stops vehicle from going back the way it came
                 brick.StopAllMotors;
             elseif (distSense > 40 && touchSense == 0)  %no wall on left, no obstacle ahead
                 brick.StopAllMotors;
@@ -41,7 +42,7 @@ while 1 %infinite loop
                 brick.WaitForMotor(RMOTOR);
                 brick.MoveMotor(RMOTOR, SPEED);
                 brick.MoveMotor(LMOTOR, SPEED2);
-                pause(4.0);
+                pause(4.5);
                 brick.StopAllMotors;
              end   
         
