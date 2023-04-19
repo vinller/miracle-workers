@@ -1,0 +1,44 @@
+global key
+InitKeyboard();
+            while 1
+                pause(0.1);
+            switch key
+                case 'uparrow'         %For moving forward
+                     disp('up Arrow Pressed!');
+                     brick.MoveMotor(RMOTOR, SPEED);
+                     brick.MoveMotor(LMOTOR, SPEED);
+            
+                 case 'downarrow'           %For moving backward
+                     disp('down Arrow Pressed!');
+                     brick.MoveMotor(RMOTOR, -SPEED);
+                     brick.MoveMotor(LMOTOR, -SPEED);
+            
+                 case 'leftarrow'        %For turning left
+                     disp('Left Arrow Pressed!');
+                     brick.MoveMotor(RMOTOR, SPEED);
+                     brick.MoveMotor(LMOTOR, -SPEED);
+            
+                 case 'rightarrow'         %For turning right
+                     disp('Right Arrow Pressed!');
+                     brick.MoveMotor(RMOTOR,-SPEED);
+                     brick.MoveMotor(LMOTOR,SPEED);
+            
+                 case 'w'                 %Raises the lift
+                     disp('w pressed');
+                     brick.MoveMotor(DMOTOR,5);
+            
+                 case 's'                 %Lowes the lift
+                     disp('s pressed');
+                     brick.MoveMotor(DMOTOR,-5);
+            
+                 case 0                   %No key is being pressed.
+                     disp('No Key Pressed');
+                     brick.StopMotor('A');
+                     brick.StopMotor('D');
+                     brick.StopMotor('B');
+                 case 't'
+                     break
+
+            end
+            end
+            CloseKeyboard();
